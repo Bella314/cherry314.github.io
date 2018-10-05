@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .list-item {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .list-enter-active,
+        .list-leave-active {
+            transition: all 1s;
+        }
+
+        .list-enter,
+        .list-leave-to
+        /* .list-leave-active for below version 2.1.8 */
+
+            {
+            opacity: 0;
+            transform: translateX(100px);
+        }
+
+        /* li:nth-child(1){
+            transition-delay: 0ms;
+        }
+        li:nth-child(2){
+            transition-delay: 100ms;
+        }
+        li:nth-child(3){
+            transition-delay: 200ms;
+        }
+        li:nth-child(4){
+            transition-delay: 300ms;
+        }
+        li:nth-child(5){
+            transition-delay: 400ms;
+        } */
+
+        body {
+            background-color: #81B4A1;
+        }
+
+        input {
+            width: 400px;
+            height: 50px;
+            margin-left: 40px;
+            border-radius: 10px;
+            font-size: 20px;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        li {
+            border: 1px solid #000;
+            padding: 10px;
+            background-color: skyblue;
+            color: white;
+            font-weight: 700;
+            font-size: 20px;
+            width: 400px;
+            border-radius: 10px;
+            margin: 5px;
+        }
+
+        #app {
+            position: absolute;
+            left: 500px;
+            top: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>天气查查查</h2>
+    <img src="../04-源代码/img/happy/01.jpg" alt="">
+    <div id="app">
+        <input type="text" v-model="city" @keyup.enter="search">
+        <transition-group name="list" tag="ul">
+            <li v-for="(item,index) in weatherlist" :style="{'transition-delay':index*100+'ms'}" :key="item.date">
+                {{item.date}}:{{item.high}}~{{item.low}}-{{item.fengxiang}}
+            </li>
+        </transition-group>
+    </div>
+</body>
+
+</html>
+<!-- 把常用的js库 放到了他的服务器 免费提供给我们使用 -->
+<!-- 
+    vue-resource 是一个 vue的插件 往vue示例中 增加一个 $http属性
+    所有的网络请求 都是通过$http来使用
+    先导入vue 再倒入 vue-resource
+    
+    早期 vue中用来调用接口的 js库
+    vue的作者直接取消 对于这个库的推荐了
+        只能结合 vue使用
+ -->
+<script src="../04-源代码/lib/vue.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script> -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    let app = new Vue({
+        el: "#app",
+        data: {
+            city: '',
+            weatherlist: []
+        },
+        methods: {
+            search() {
+                this.weatherlist = [];
+                // this.$http.get('http://wthrcdn.etouch.cn/weather_mini?city=' + this.city).then(response => {
+                //     this.weatherlist = response.body.data.forecast;
+                // })
+                axios.get('http://wthrcdn.etouch.cn/weather_mini?city=' + this.city).then(response => {
+                    this.weatherlist = response.data.data.forecast;
+                })
+            }
+        }
+    })
+</script>
