@@ -1,127 +1,535 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="zxx">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <style>
-        .list-item {
-            display: inline-block;
-            margin-right: 10px;
-        }
+	<meta charset="utf-8">
+	<title>主页</title>
+	
 
-        .list-enter-active,
-        .list-leave-active {
-            transition: all 1s;
-        }
+	<meta name="description" content="----">
 
-        .list-enter,
-        .list-leave-to
-        /* .list-leave-active for below version 2.1.8 */
+	<meta name="keywords" content="Premium HTML Template">
 
-            {
-            opacity: 0;
-            transform: translateX(100px);
-        }
+	<meta name="author" content="HTMLmate">
 
-        /* li:nth-child(1){
-            transition-delay: 0ms;
-        }
-        li:nth-child(2){
-            transition-delay: 100ms;
-        }
-        li:nth-child(3){
-            transition-delay: 200ms;
-        }
-        li:nth-child(4){
-            transition-delay: 300ms;
-        }
-        li:nth-child(5){
-            transition-delay: 400ms;
-        } */
+	<!-- Mobile Specific Meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-        body {
-            background-color: #81B4A1;
-        }
+	<!-- css-include -->
 
-        input {
-            width: 400px;
-            height: 50px;
-            margin-left: 40px;
-            border-radius: 10px;
-            font-size: 20px;
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        li {
-            border: 1px solid #000;
-            padding: 10px;
-            background-color: skyblue;
-            color: white;
-            font-weight: 700;
-            font-size: 20px;
-            width: 400px;
-            border-radius: 10px;
-            margin: 5px;
-        }
-
-        #app {
-            position: absolute;
-            left: 500px;
-            top: 100px;
-        }
-    </style>
+	<!-- boorstrap -->
+	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+	<!-- themify-icon.css -->
+	<link rel="stylesheet" type="text/css" href="assets/css/themify-icons.css">
+	<!-- owl-carousel -->
+	<link rel="stylesheet" type="text/css" href="assets/css/owl.carousel.css">
+	<!-- light-box -->
+	<link rel="stylesheet" type="text/css" href="assets/css/lightbox.css">
+	<!-- video css -->
+	<link rel="stylesheet" type="text/css" href="assets/css/video.min.css">
+	<!-- menu.css -->
+	<link rel="stylesheet" type="text/css" href="assets/css/menu.css">
+	<!-- style -->
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<!-- responsive.css -->
+	<link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
 </head>
 
-<body>
-    <h2>天气查查查</h2>
-    <img src="../04-源代码/img/happy/01.jpg" alt="">
-    <div id="app">
-        <input type="text" v-model="city" @keyup.enter="search">
-        <transition-group name="list" tag="ul">
-            <li v-for="(item,index) in weatherlist" :style="{'transition-delay':index*100+'ms'}" :key="item.date">
-                {{item.date}}:{{item.high}}~{{item.low}}-{{item.fengxiang}}
-            </li>
-        </transition-group>
-    </div>
-</body>
 
-</html>
-<!-- 把常用的js库 放到了他的服务器 免费提供给我们使用 -->
-<!-- 
-    vue-resource 是一个 vue的插件 往vue示例中 增加一个 $http属性
-    所有的网络请求 都是通过$http来使用
-    先导入vue 再倒入 vue-resource
-    
-    早期 vue中用来调用接口的 js库
-    vue的作者直接取消 对于这个库的推荐了
-        只能结合 vue使用
- -->
-<script src="../04-源代码/lib/vue.js"></script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script> -->
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script>
-    let app = new Vue({
-        el: "#app",
-        data: {
-            city: '',
-            weatherlist: []
-        },
-        methods: {
-            search() {
-                this.weatherlist = [];
-                // this.$http.get('http://wthrcdn.etouch.cn/weather_mini?city=' + this.city).then(response => {
-                //     this.weatherlist = response.body.data.forecast;
-                // })
-                axios.get('http://wthrcdn.etouch.cn/weather_mini?city=' + this.city).then(response => {
-                    this.weatherlist = response.data.data.forecast;
-                })
-            }
-        }
-    })
-</script>
+<body>
+	<div id="preloader"></div>
+	<!-- Start of nav bar 
+		============================================= -->
+		<nav id="poppin-nav">
+			<div id="nav-off"></div>
+			<div id="header-logo-1" class="text-center">
+				<a href="#"><img src="assets/img/myself/me4.jpg" alt="img"></a>
+			</div>
+			<ul id="menu">
+				<li class="has-submenu text-capitalize">
+					<a href="index.html">家</a>
+				</li>
+				<li class="has-submenu">
+					<a href="#">博客 <span class="ti-angle-down"></span></a>
+					<ul class="submenu">
+						<li><a href="blog.html">部落格</a></li>
+						<li><a href="blog-single.html">我的学习</a></li>
+					</ul>
+				</li>
+				<li><a href="contact.html">联系我</a></li>
+			</ul>
+		</nav>
+		<div id="menu-overlay"></div>
+	<!-- End of nav bar 
+		============================================= -->
+
+
+
+	<!-- Start of header
+		============================================= -->
+		<header id="site-header" class="not-stuck">
+			<div class="container">
+				<div class="row">
+					<div id="header-logo">
+						<a href="#"><img src="assets/img/myself/me4.jpg" alt="img"></a>
+					</div>
+
+					<div id="menu-burger" class="pull-right not-stuck">
+						<div id="menu-bar">
+							<span class="icon-bar top"></span>
+							<span class="icon-bar middle"></span>
+							<span class="icon-bar bottom"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+	<!-- End of header
+		============================================= -->
+
+
+
+
+
+	<!-- Start of page head section
+		============================================= -->
+		<section id="page-head" class="page-head-section">
+			<div class="page-head-overlay"></div>
+			<div id="page-head-effect" class="page-head-effect">
+				<canvas id="demo-canvas"></canvas>
+			</div>
+			<!-- // page-head-style -->
+			<div class="container">
+				<div class="row">
+					<div class="banner-content">
+						<div class="page-head-content">
+							<div class="page-head-title text-capitalize pb40">
+								<h1>欢迎来到</h1>
+								<span class="descrip">我的小世界</span>
+							</div>
+							<!-- //title -->
+
+							<!-- <div class="page-head-social">
+								<div  class="social-title text-uppercase">
+									<span>社会的</span>
+								</div>
+								<!-- //title -->
+								<!-- <div class="page-head-social-item ul-li">
+									<ul class="page-head-social-list">
+										<li><a href="#"><span class="ti-facebook"></span></a></li>
+										<li><a href="#"><span class="ti-twitter-alt"></span></a></li>
+										<li><a href="#"><span class="ti-google"></span></a></li>
+										<li><a href="#"><span class="ti-instagram"></span></a></li>
+									</ul><! /.page-head-social-list -->
+								<!-- </div>/.page-head-social-item --> 
+							<!-- </div> --> 
+							<!-- /.page-head-social -->
+						</div>
+						<!-- /.page-head-content -->
+					</div>
+				</div><!--  /.row-->
+			</div><!--  /.container -->
+		</section>
+	<!-- End of page head section
+		============================================= -->
+
+
+
+
+
+	<!-- Start of portfolio section
+		============================================= -->
+		<section id="portfolio" class="portfolio-section">
+			<div class="container">
+				<div class="row">
+					<div class="portfolio-content">
+						<div class="portfolio-tab pb55">
+							<div id="filters" class="button-group pb45">
+								<button class="tab-button active" data-filter="*">所有照片<span></span></button>
+								<button class="tab-button" data-filter=".web">家人<span></span></button>
+								<button class="tab-button" data-filter=".design">生活<span></span></button>
+								<button class="tab-button" data-filter=".branding">我的收藏<span></span></button>
+								<button class="tab-button" data-filter=".photography">旅游<span></span></button>
+							</div>
+							<!-- /tab-button -->
+
+							<div class="portfolio-tab-text-pic row">
+								<div id="posts">
+									<div id="1" class="item item-grid web">
+										<div class="item-wrap">
+											<div class="work-item">
+												<div class="work-pic">
+													<img src="assets/img/myself/di1.jpg" alt="image" style="width: 370px;height: 470px;">
+												</div>
+												<!-- //img -->
+												<div class="hover-content">
+													<div class="hover-text text-center">
+														<a href="assets/img/myself/di1.jpg" data-lightbox="roadtrip"><span class="ti-fullscreen"></span></a>
+													</div>
+													<!-- //light-box-img -->
+													<div class="project-description text-uppercase ul-li">
+														<h3><a href="#">我的弟弟</a></h3>
+														<ul class="project-catagorry text-capitalize">
+															<li><a href="#">暑假夏令营 </a></li>
+
+															<li><a href="#">帅帅的小主持人</a></li>
+														</ul>
+													</div>
+													<!-- //project-description -->
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- /item -->
+
+									<div id="2" class="item item-grid design web">
+										<div class="item-wrap">
+											<div class="work-item">
+												<div class="work-pic">
+													<img src="assets/img/myself/f6.jpg" alt="image" style="width: 370px;height: 370px;">
+												</div>
+												<!-- //img -->
+												<div class="hover-content">
+													<div class="hover-text text-center">
+														<a href="assets/img/myself/f6.jpg" data-lightbox="roadtrip"><span class="ti-fullscreen"></span></a>
+													</div>
+													<!-- //light-box-img -->
+													<div class="project-description text-uppercase ul-li">
+														<h3><a href="#">我们一家子</a></h3>
+														<ul class="project-catagorry text-capitalize">
+															<li><a href="#">逛公园 </a></li>
+
+															<li><a href="#">幸福的一家人</a></li>
+														</ul>
+													</div>
+													<!-- //project-description -->
+												</div>
+											</div>
+											
+										</div>
+									</div>
+									<!-- /item -->
+
+									<div id="3" class="item item-grid design photography">
+										<div class="item-wrap">
+											<div class="work-item">
+												<div class="work-pic">
+													<img src="assets/img/myself/me3.jpg" alt="image" style="width: 370px;height: 470px;">
+												</div>
+												<!-- //img -->
+												<div class="hover-content">
+													<div class="hover-text text-center">
+														<a href="assets/img/portfolio/port-3.jpg" data-lightbox="roadtrip"><span class="ti-fullscreen"></span></a>
+													</div>
+													<!-- //light-box-img -->
+													<div class="project-description text-uppercase ul-li">
+														<h3><a href="#">水湾之行</a></h3>
+														<ul class="project-catagorry text-capitalize">
+															<li><a href="#">我</a></li>
+
+															<li><a href="#">与友游玩之乐</a></li>
+														</ul>
+													</div>
+													<!-- //project-description -->
+												</div>
+											</div>
+											
+										</div>
+									</div>
+									<!-- /item -->
+
+									<div id="4" class="item item-grid design photography web">
+										<div class="item-wrap">
+											<div class="work-item">
+												<div class="work-pic">
+													<img src="assets/img/myself/di5.jpg" alt="image" style="width: 370px;height: 470px;">
+												</div>
+												<!-- //img -->
+												<div class="hover-content">
+													<div class="hover-text text-center">
+														<a href="assets/img/myself/me1.jpg" data-lightbox="roadtrip"><span class="ti-link"></span></a>
+													</div>
+													<!-- //light-box-img -->
+													<div class="project-description text-uppercase ul-li">
+														<h3><a href="#">小老弟</a></h3>
+														<ul class="project-catagorry text-capitalize">
+															<li><a href="#">15岁啦</a></li>
+
+															<li><a href="#">快要成为我们家的男子汉啦</a></li>
+														</ul>
+													</div>
+													<!-- //project-description -->
+												</div>
+											</div>
+											
+										</div>
+									</div>
+									<!-- /item -->
+
+									<div id="5" class="item item-grid design web">
+										<div class="item-wrap">
+											<div class="work-item">
+												<div class="work-pic">
+													<img src="assets/img/myself/f1.jpg" alt="image" style="width: 370px;height: 270px;">
+												</div>
+												<!-- //img -->
+												<div class="hover-content">
+													<div class="hover-text text-center">
+														<a class="popup zoom-gallery" href="#"><span class="ti-control-forward"></span></a>
+													</div>
+													<!-- //light-box-img -->
+													<div class="project-description text-uppercase ul-li">
+														<h3><a href="#">家人</a></h3>
+														<ul class="project-catagorry text-capitalize">
+															<li><a href="#">旧时光</a></li>
+
+															<li><a href="#">美好</a></li>
+														</ul>
+													</div>
+													<!-- //project-description -->
+												</div>
+											</div>
+											
+										</div>
+									</div>
+									<!-- /item -->
+
+									<div id="6" class="item item-grid design branding web">
+										<div class="item-wrap">
+											<div class="work-item">
+												<div class="work-pic">
+													<img src="assets/img/myself/f3.jpg" alt="image" style="width: 370px;height: 270px;">
+												</div>
+												<!-- //img -->
+												<div class="hover-content">
+													<div class="hover-text text-center">
+														<a href="assets/img/myself/f3.jpg" data-lightbox="roadtrip"><span class="ti-link"></span></a>
+													</div>
+													<!-- //light-box-img -->
+													<div class="project-description text-uppercase ul-li">
+														<h3><a href="#">家人</a></h3>
+														<ul class="project-catagorry text-capitalize">
+															<li><a href="#">美好的 </a></li>
+
+															<li><a href="#">旧时光</a></li>
+														</ul>
+													</div>
+													<!-- //project-description -->
+												</div>
+											</div>
+											
+										</div>
+									</div>
+									<!-- /item -->
+
+									<div id="7" class="item item-grid design branding web">
+										<div class="item-wrap">
+											<div class="work-item">
+												<div class="work-pic">
+													<img src="assets/img/myself/f5.jpg" alt="image" style="width: 370px;height: 470px;">
+												</div>
+												<!-- //img -->
+												<div class="hover-content">
+													<div class="hover-text text-center">
+														<a href="assets/img/portfolio/port-7.jpg" data-lightbox="roadtrip"><span class="ti-fullscreen"></span></a>
+													</div>
+													<!-- //light-box-img -->
+													<div class="project-description text-uppercase ul-li">
+														<h3><a href="#">妈妈和弟弟</a></h3>
+														<ul class="project-catagorry text-capitalize">
+															<li><a href="#">美美的</a></li>
+
+															<li><a href="#">游玩</a></li>
+														</ul>
+													</div>
+													<!-- //project-description -->
+												</div>
+											</div>
+											
+										</div>
+									</div>
+									<!-- /item -->
+
+									<div id="8" class="item item-grid design branding web">
+										<div class="item-wrap">
+											<div class="work-item">
+												<div class="work-pic">
+													<img src="assets/img/myself/di2.jpg" alt="image" style="width: 370px;height: 470px;">
+												</div>
+												<!-- //img -->
+												<div class="hover-content">
+													<div class="hover-text text-center">
+														<a  class="popup" href="#"><span class="ti-control-forward"></span></a>
+													</div>
+													<!-- //light-box-img -->
+													<div class="project-description text-uppercase ul-li">
+														<h3><a href="#">可爱的小老弟</a></h3>
+														<ul class="project-catagorry text-capitalize">
+															<li><a href="#">跟着老爸</a></li>
+
+															<li><a href="#">吃好吃的</a></li>
+														</ul>
+													</div>
+													<!-- //project-description -->
+												</div>
+											</div>
+											
+										</div>
+									</div>
+									<!-- /item -->
+
+									<div id="9" class="item item-grid design branding web">
+										<div class="item-wrap">
+											<div class="work-item">
+												<div class="work-pic">
+													<img src="assets/img/myself/f2.jpg" alt="image" style="width: 370px;height: 370px;">
+												</div>
+												<!-- //img -->
+												<div class="hover-content">
+													<div class="hover-text text-center">
+														<a href="assets/img/myself/f2.jpg" data-lightbox="roadtrip"><span class="ti-fullscreen"></span></a>
+													</div>
+													<!-- //light-box-img -->
+													<div class="project-description text-uppercase ul-li">
+														<h3><a href="#">古龙峡漂流</a></h3>
+														<ul class="project-catagorry text-capitalize">
+															<li><a href="#">惊险好玩 </a></li>
+
+															<li><a href="#">第一次玩漂流</a></li>
+														</ul>
+													</div>
+													<!-- //project-description -->
+												</div>
+											</div>
+											
+										</div>
+									</div>
+									<!-- /item -->
+
+
+								</div><!--//posts-->
+							</div><!--//portfolio-tab-text-pic-->
+						</div><!--//portfolio-tab-->
+
+					</div><!--//portfolio-content -->
+				</div><!--  /.row -->
+			</div><!--  /.conatiner -->
+		</section>
+
+		<section id="service" class="service-section pt90 pb40">
+			<div class="container">
+				<div class="row">
+					<div class="section-title text-capitalize deep-black pb75">
+						<h2>我的其他照片墙</h2>
+					</div>
+					<!-- //title -->
+
+					<div class="latest-blog-content">
+						<div class="row">
+
+							<div class="col-md-4">
+								<div class="latest-blog-text-pic">
+									<div class="latest-blog-img mb10"> 
+										<img src="assets/img/myself/life1.jpg" alt="img" style="width:370px;height: 370px;">
+										<div class="blog-meta mt20 ul-li">
+											<ul class="meta-list">
+												<li><a href="#">201809 /  </a></li>
+												<li><a href="#"> 螺蛳粉门前的小猫咪 </a></li>
+												<li><a href="#">可爱</a></li>
+											</ul>
+										</div>
+									</div>
+									<!-- //.latest-blog-img -->
+
+									<!-- <div class="latest-blog-text">
+										<div class="blog-head">
+											<h2> <a href="#">Lorem ipsum dolor sit ametely, con-sectetu</a></h2>
+										</div>
+										
+										<div class="blog-details mt15">
+											<p>
+												Excepteur sint occaecat cupidatat nonmaly proident, sunt.
+											</p>
+										</div>
+										
+										<div class="blog-read-more text-capitalize pull-left">
+											<a href="#">read more<span class="ti-arrow-right"></span></a>
+										</div>
+										
+
+										<div class="latest-blog-comments text-capitalize pull-right">
+											<a href="#"><span class="ti-comments"> 5 Comments</span></a>
+										</div>
+										
+									</div> -->
+
+								</div>
+								<!-- //.latest-blog-text-pic -->
+							</div>
+							<!-- //.col-md-4 -->
+
+						</div>
+						<!-- //.row -->
+					</div>
+					<!-- //.latest-blog-content -->
+
+
+				</div><!--  row -->
+			</div><!--  container-->
+		</section>
+	<!-- End of our service section
+		============================================= -->
+	<!-- Start of footer section
+		============================================= -->
+		<footer>
+			<div class="footer-area footer-2">
+				<div class="container">
+					<div class="row">
+						<div class="copy-right-area text-center">
+							<div class="page-head-social-item ul-li">
+								<ul class="page-head-social-list">
+									<!-- <li><a href="#"><span class="ti-facebook"></span></a></li>
+									<li><a href="#"><span class="ti-twitter-alt"></span></a></li>
+									<li><a href="#"><span class="ti-google"></span></a></li>
+									<li><a href="#"><span class="ti-instagram"></span></a></li> -->
+								</ul><!-- /.page-head-social-list -->
+							</div>
+							<span>已经到底啦 </span>
+						</div>
+						<!-- //copy-right-area -->
+					</div><!--  /.container -->
+				</div><!--  /.row-->
+			</div><!--  /.footer-area -->
+		</footer>
+	<!-- End of footer section
+		============================================= -->
+
+
+
+		<!--  Js Library -->
+		<script src="assets/js/jquery-2.1.4.min.js"></script>
+		<!-- Include  for bootstrap -->
+		<script src="assets/js/bootstrap.min.js"></script>
+		<!-- Include isotope Js -->
+		<script src="assets/js/jquery.isotope.min.js"></script>
+		<!-- Include lightbox -->
+		<script src="assets/js/lightbox.js"></script>
+		<!-- Include circle-effect.js -->
+		<script src="assets/js/circle-effect.js"></script>
+		<!-- Include Video js -->
+		<script src="assets/js/jquery.magnific-popup.min.js"></script>
+		<!-- Include Owl-carousel -->
+		<script src="assets/js/owl.carousel.min.js"></script>
+		<!-- Include Counter up -->
+		<script src="assets/js/jquery.counterup.min.js"></script>
+		<script src="assets/js/waypoints.min.js"></script>
+
+
+
+		<!-- Include script.js -->
+		<script src="assets/js/script.js"></script>
+
+
+	</body>
+	</html>
